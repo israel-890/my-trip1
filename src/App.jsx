@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import SettingsPage from "./components/SettingsPage";
 import ContactModal from "./components/ContactModal";
+import Footer from "./components/Footer";
 
 function App() {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -15,14 +16,14 @@ function App() {
 
   return (
     <Router>
-      <div className="h-screen">
-        <Navbar toggleContactModal={toggleContactModal} />
+      <div className="flex flex-col min-h-screen">
+      <Navbar toggleContactModal={toggleContactModal} />
         <Routes>
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/" element={<HomePage />} />
-        </Routes>
           {showContactModal && <ContactModal onClose={toggleContactModal} />}
-          <footer />
+        </Routes>
+        <Footer />
       </div>
     </Router>
   );
