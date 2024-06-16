@@ -24,8 +24,12 @@ const ContactModal = ({ onClose }) => {
   };
 
   return (
-    <div className=" absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-      <div className="bg-white p-8 rounded-lg">
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div
+        className="fixed inset-0 bg-gray-800 bg-opacity-50"
+        onClick={onClose}
+      ></div>
+<div className="bg-white p-8 rounded-lg z-10">
         <h2 className="text-xl font-bold mb-4">צור קשר</h2>
         <form onSubmit={handleSubmit}>
           <input
@@ -33,20 +37,20 @@ const ContactModal = ({ onClose }) => {
             placeholder="שם"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-400 p-2 mb-2 w-4/5"
+            className="border border-gray-400 p-2 mb-2 w-4/5 text-blue-600 font-bold"
           />
           <input
             type="email"
             placeholder="כתובת מייל"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-400 p-2 mb-2 w-4/5"
+            className="border border-gray-400 p-2 mb-2 w-4/5 text-blue-600 font-bold"
           />
           <textarea
             placeholder="הודעה"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="border border-gray-400 p-2 mb-2 w-4/5 h-32"
+            className="border border-gray-400 p-2 mb-2 w-4/5 h-32 text-blue-600"
           />
           <div className="flex justify-end">
             <button
