@@ -1,23 +1,22 @@
 // components/Navbar.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ContactModal from "./ContactModal";
+import AboutPage from "./AboutPage";
 
-const Navbar = ({ toggleTheme }) => {
-  const [showContactModal, setShowContactModal] = useState(false);
-
-  const toggleContactModal = () => {
-    setShowContactModal(!showContactModal);
-  };
-
+const Navbar = () => {
   return (
     <nav className="h-36 w-full bg-sky text-white p-4">
-      <h1 className="text-center">My Trip</h1>
+      <h1 className="text-3xl text-center font-bold mb-4 tracking-wide text-blue-700">My Trip</h1>
       <h2 className="text-center subpixel-antialiased">האתר שעושה כיף לטייל</h2>
       <ul className="flex justify-center space-x-4 flex-grow items-center bg-sky text-white p-4 shadow-md ">
         <li>
           <Link to="/" className="btn-primary h-6">
-            Home
+            הרשימה שלי
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className="btn-primary">
+            אודות
           </Link>
         </li>
         <li>
@@ -30,13 +29,7 @@ const Navbar = ({ toggleTheme }) => {
             מקומות שביקרתי
           </Link>
         </li>
-        <li>
-          <button onClick={toggleContactModal} className="btn-primary">
-            צור קשר
-          </button>
-        </li>
       </ul>
-      {showContactModal && <ContactModal onClose={toggleContactModal} />}
     </nav>
   );
 };
