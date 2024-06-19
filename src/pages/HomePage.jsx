@@ -4,16 +4,18 @@ import PlaceList from "../components/PlaceList";
 import AddPlaceModal from "../components/AddPlaceModal";
 import PlaceDetails from '../components/PlaceDetails';
 import TripModal from '../components/TripModal';
+import PlacesVisited from "../components/PlacesVisited"; 
 
-const HomePage = () => {
-  const [places, setPlaces] = useState([]);
+const HomePage = ({ places, addPlace, removePlace }) => {
+  // const [places, setPlaces] = useState([]);
   const [showAddPlaceModal, setShowAddPlaceModal] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [showTripModal, setShowTripModal] = useState(false);
+  const [showVisitedPlacesModal, setShowVisitedPlacesModal] = useState(false);
 
-  const addPlace = (place) => {
-    setPlaces([...places, place]);
-  };
+  // const addPlace = (place) => {
+  //   setPlaces([...places, place]);
+  // };
 
   const toggleAddPlaceModal = () => {
     setShowAddPlaceModal(!showAddPlaceModal);
@@ -27,13 +29,17 @@ const HomePage = () => {
     setSelectedPlace(place);
   };
 
+  const toggleVisitedPlacesModal = () => {
+    setShowVisitedPlacesModal(!showVisitedPlacesModal);
+  };
+
   return (
     <div className="flex flex-grow bg-lightGreen p-4">
       <div className="w-4/5 h-full flex">
         <div className="relative w-1/2 h-full">
           <Map places={places} />
         </div>
-        <div className="relative w-1/2 h-full p-4 text-white font-bold tracking-wide leading-loose">
+        <div className="relative w-1/2 h-full min-h-full p-4 mx-4 border-solid border-2 border-blue-700 rounded text-white font-bold tracking-wide leading-loose">
           <PlaceList places={places} />
         </div>
       </div>
@@ -58,6 +64,20 @@ const HomePage = () => {
             places={places}
             onSelectPlace={handlePlaceSelect}
             onClose={toggleTripModal}
+          />
+        )}
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-s-full mb-4"
+          onClick={toggleVisitedPlacesModal}
+        >
+          המקומות שביקרתי
+        </button>
+        {showVisitedPlacesModal && (
+          <PlacesVisited
+          places={places} 
+          addPlace={addPlace} 
+          removePlace={removePlace}
+          onClose={toggleVisitedPlacesModal}
           />
         )}
       </div>
