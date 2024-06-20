@@ -7,7 +7,7 @@ const Map = ({ places }) => {
 
   return (
     <div style={{ height: "90vh", display: "flex"}} >
-      <div style={{ flex: "0 0 100%", height: "100%", border: "2px solid blue" }} >
+      <div style={{ flex: "0 0 100%", height: "100%", border: "2px solid blue", borderRadius: "12px", overflow: "hidden" }} >
         <GoogleMapReact
           bootstrapURLKeys={{
             key:"AIzaSyBE_SSzcqj9Ty_y0BOJi3L1lkA9f7oDZao",

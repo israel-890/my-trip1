@@ -12,7 +12,7 @@ const Footer = () => {
       setShowContactModal(!showContactModal);
     };
   return (
-    <footer className="bg-brown text-white p-4 text-center mt-auto">
+    <footer className="bg-brown text-white p-4 text-center mt-auto ">
       <div className="container mx-auto flex justify-between">
         <div className="flex flex-col">
           <h3 className="font-semibold mb-2">We're on Social Media</h3>
@@ -60,15 +60,16 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-center">
-          <h3 className="font-semibold mb-2">נשמח להשתמע</h3>
-          <p className="mb-2">info@example.com</p>
-          <p className="mb-2">+1 (555) 123-4567</p>
+          <h3 className="font-semibold mb-2">Contact Us - נשמח להשתמע</h3>
+          <p className="mb-2">8200isra@gmail.com</p>
+          <p className="mb-2">yosefglr@gmail.com</p>
+          <p className="mb-4"></p>
             <button onClick={toggleContactModal} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
               צור קשר
             </button>
         </div>
         <div>
-          <h3 className="font-semibold mb-2">המיקום שלנו</h3>
+          <h3 className="font-semibold mb-3">Our location - המיקום שלנו</h3>
           <div className="w-64 h-40 bg-gray-200">
           <GoogleMapReact
           bootstrapURLKeys={{

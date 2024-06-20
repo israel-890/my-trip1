@@ -1,16 +1,12 @@
+// PlacesVisited.jsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import FeelAtHome from "../assets/FeelAtHome.jpg";
 
-  // PlacesVisited.jsx
-  import React, { useState } from "react";
-  import { Link } from "react-router-dom";
-  import PlaceEditModal from "./PlaceEditModal";
-  import FeelAtHome from "../assets/FeelAtHome.jpg";
-  
-  const PlacesVisited = ({ places, addPlace, removePlace }) => {
-    const [visitedPlaces, setVisitedPlaces] = useState([]);
-    const [newPlace, setNewPlace] = useState("");
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [editingPlace, setEditingPlace] = useState(null);
-  
+const PlacesVisited = ({ places, addPlace, removePlace }) => {
+  const [visitedPlaces, setVisitedPlaces] = useState([]);
+  const [newPlace, setNewPlace] = useState("");
+
   const handleAddPlace = () => {
     if (newPlace.trim()) {
       setVisitedPlaces([...visitedPlaces, newPlace.trim()]);
@@ -23,28 +19,18 @@
     setVisitedPlaces(updatedPlaces);
   };
 
-  const handleSelectPlace = (place) => {
-    if (!visitedPlaces.includes(place)) {
-      setVisitedPlaces([...visitedPlaces, place]);
-      removePlace(place); // Remove the place from the original list
+  const handleSelectPlace = (placeName) => {
+    if (!visitedPlaces.includes(placeName)) {
+      setVisitedPlaces([...visitedPlaces, placeName]);
+      removePlace(placeName); // Remove the place from the original list
     }
-  };
-
-  const handleEditPlace = (place) => {
-    setEditingPlace(place);
-    setShowEditModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowEditModal(false);
-    setEditingPlace(null);
   };
 
   const hasAvailablePlaces = Array.isArray(places) && places.length > 0;
 
   return (
-<div className="bg-cover h-screen flex justify-center items-center" style={{ backgroundImage: `url(${FeelAtHome})` }}>
-<div className="p-4 bg-white bg-opacity-90 rounded-lg mx-auto max-w-3xl">
+    <div className="bg-cover h-screen flex justify-center items-start" style={{ backgroundImage: `url(${FeelAtHome})` }}>
+      <div className="mt-48 p-4 bg-white bg-opacity-90 rounded-lg mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-center">המקומות שביקרתי</h2>
         <div className="flex mb-4 justify-center">
           <div className="mr-4">
@@ -76,6 +62,7 @@
                       id={`place-${index}`}
                       className="mr-2"
                       onChange={() => handleSelectPlace(place.name)}
+                      checked={visitedPlaces.includes(place.name)}
                     />
                     <label htmlFor={`place-${index}`}>{place.name}</label>
                   </li>
@@ -91,9 +78,9 @@
                 <span className="text-lg">{place}</span>
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-                  onClick={() => handleEditPlace(place)}
+                  onClick={() => handleRemovePlace(place)}
                 >
-                  ערוך
+                  מחק
                 </button>
               </li>
             ))}
@@ -109,13 +96,6 @@
           </Link>
         </div>
       </div>
-      {showEditModal && (
-        <PlaceEditModal
-          place={editingPlace}
-          onClose={handleCloseModal}
-          onDelete={handleRemovePlace}
-        />
-      )}
     </div>
   );
 };

@@ -14,3 +14,7 @@ body {
 body {
   @apply bg-teal-100;
 }
+.place-list-container {
+  height: 90vh;
+}
+
