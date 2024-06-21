@@ -3,23 +3,19 @@ import Map from "../components/Map";
 import PlaceList from "../components/PlaceList";
 import AddPlaceModal from "../components/AddPlaceModal";
 import PlaceDetails from "../components/PlaceDetails";
-import TripModal from "../components/TripModal";
+import LocationSelector from '../components/LocationSelector';
 import PlaceEditModal from "../components/PlaceEditModal";
 
 const HomePage = ({ places, addPlace, removePlace, editPlace }) => {
   const [showAddPlaceModal, setShowAddPlaceModal] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const [showTripModal, setShowTripModal] = useState(false);
+  const [showLocationSelector, setShowLocationSelector] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingPlace, setEditingPlace] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
   const toggleAddPlaceModal = () => {
     setShowAddPlaceModal(!showAddPlaceModal);
-  };
-
-  const toggleTripModal = () => {
-    setShowTripModal(!showTripModal);
   };
 
   const handlePlaceSelect = (place) => {
@@ -75,19 +71,13 @@ const HomePage = ({ places, addPlace, removePlace, editPlace }) => {
         {showAddPlaceModal && (
           <AddPlaceModal addPlace={addPlace} onClose={toggleAddPlaceModal} />
         )}
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-s-full mb-4"
-          onClick={toggleTripModal}
-        >
-          אז בא נצא לדרך
-        </button>
-        {showTripModal && (
-          <TripModal
-            places={places}
-            onSelectPlace={handlePlaceSelect}
-            onClose={toggleTripModal}
-          />
-        )}
+        
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-s-full mb-4" onClick={() => setShowLocationSelector(true)}>
+        אז בא נצא לדרך
+      </button>
+      {showLocationSelector && (
+        <LocationSelector onClose={() => setShowLocationSelector(false)} />
+      )}
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-s-full mb-4"
           onClick={() => handleEditPlace(null)}
