@@ -67,7 +67,7 @@ const PlacesVisited = ({ places, addPlace, removePlace }) => {
                 <div className="flex items-center">
                   <img
                     src={CheckIcon}
-                    alt="וי"
+                    alt="v"
                     className="w-4 h-4 mr-1 text-blue-600"
                   />
                   <span className="text-lg text-blue-600">{place}</span>
@@ -76,7 +76,7 @@ const PlacesVisited = ({ places, addPlace, removePlace }) => {
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
                   onClick={() => handleRemovePlace(place)}
                 >
-                  מחיק
+                  מחק
                 </button>
               </li>
             ))}
